@@ -1,9 +1,3 @@
-
-/// Make the logo bigger (from Matt Reidsma)
-
-$(".siteHeader img.img-responsive.logo").attr("src", "https://www.gvsu.edu/includes/topbanner/3/gvsu_logo.png");
-      console.log('Made the logo bigger.');
-
 // Put a message at the top of the Summon Search Results (true = on, false = off)
 var showAlert = true;
 

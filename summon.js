@@ -1,3 +1,18 @@
+// ADD ADDITIONAL LINKS ACROSS TOP
+
+
+var libMyScope = '';
+
+$(document).ready(function() {
+        setTimeout(function() {
+                libMyScope = angular.element('html').scope();
+                // libInitWithScope( );
+        }, 1000);
+
+        // AND DO SOME OTHER STUFF JUST THE ONCE...
+        libInitPage( );
+});
+
 function libInitPage( ) {
 
         // OK, WE CAN'T ADD THE EXTRA LINKS IMMEDIATELY (15/OCT/2014)
@@ -14,7 +29,6 @@ function libInitPage( ) {
 			$('.siteLinks .list-unstyled:eq(1)').prepend('<li ng-repeat="link in links.links" bindonce="" class="ng-scope"><a target="_blank" tabindex="0" ng-if="link.href" ng-href="http://libraryadmin.herts.ac.uk/newbooks/" class="customColorsSiteLink ng-scope" href="http://libraryadmin.herts.ac.uk/newbooks/"><span ng-bind-html="link.label" ng-if="!link.image" class="ng-binding ng-scope">New Books</span></a></li>');
         }, 1000);
 }
-
 
 
 // Put a message at the top of the Summon Search Results (true = on, false = off)

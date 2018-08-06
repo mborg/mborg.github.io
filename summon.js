@@ -13,3 +13,32 @@ function() {
         }
     }
 });
+
+angular.module('summonApp.directives')
+.service("facetStateSaverService", ["storeService", function (storeService) {
+    this.collapsed = storeService.bucket("collapsedFacets");
+}])
+.directive("facetField",
+["facetsService", "facetStateSaverService", function(facetService, facetState) {
+    return {
+        link:  function (scope) {
+            var facet = scope.facet;
+            var shouldBeCollapsed = facetState.collapsed.get(facet.label);
+ 
+            scope.$watch("facet.collapsed", function (nval, oval) {
+                if (nval == oval) return;
+                facetState.collapsed.set(facet.label, nval);
+            });
+ 
+            if (shouldBeCollapsed != null) {
+                if (shouldBeCollapsed != facet.collapsed)
+                    facetService.toggleCollapsed(facet);
+            } else {
+                // library wishes to expand Library facet by default
+                if (facet.label == "Library" && facet.collapsed)
+                    facetService.toggleCollapsed(facet);
+            }
+ 
+        }
+    }
+}]);
